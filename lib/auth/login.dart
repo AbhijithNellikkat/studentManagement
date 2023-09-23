@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:student_management_app/auth/forgot_password.dart';
 
 import '../main.dart';
 import '../utils/auth_utils.dart';
@@ -100,6 +101,11 @@ class Login extends StatelessWidget {
                           decoration: TextDecoration.underline,
                         ),
                       ),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotPasswordScreen(),
+                          )),
                     ),
                     const SizedBox(height: 40),
                     RichText(
