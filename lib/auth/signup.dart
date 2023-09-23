@@ -8,13 +8,10 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../utils/auth_utils.dart';
 import '../utils/constants.dart';
-import '../widgets/global/auth_textFormField_widget.dart';
+import '../widgets/global/auth_TextFormField_widget.dart';
 
-class Login extends StatelessWidget {
-  Login({
-    super.key,
-    required this.onClickedSignUp,
-  });
+class SignUp extends StatelessWidget {
+  SignUp({super.key, required this.onClickedSignUp});
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -24,7 +21,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future signIn() async {
+    Future signUp() async {
       final isvalid = formKey.currentState!.validate();
       if (!isvalid) return;
 
@@ -35,7 +32,7 @@ class Login extends StatelessWidget {
       );
       try {
         FocusManager.instance.primaryFocus?.unfocus();
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
@@ -50,7 +47,7 @@ class Login extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Login'),
+          title: const Text('Sign Up'),
           centerTitle: true,
         ),
         body: Padding(
@@ -83,34 +80,23 @@ class Login extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
-                      onPressed: signIn,
+                      onPressed: signUp,
                       child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 70, vertical: 15),
-                        child: Text('Login'),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    GestureDetector(
-                      child: const Text(
-                        'Forgot Password ? ',
-                        style: TextStyle(
-                          color: Colors.deepPurple,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                        ),
+                        child: Text('Sign Up'),
                       ),
                     ),
                     const SizedBox(height: 40),
                     RichText(
                       text: TextSpan(
                         style: const TextStyle(color: Colors.black),
-                        text: 'No account ? ',
+                        text: 'Already have an account ? ',
                         children: [
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = onClickedSignUp,
-                            text: 'Sign Up',
+                            text: 'Login',
                             style: const TextStyle(
                               color: Colors.deepPurple,
                               fontWeight: FontWeight.bold,

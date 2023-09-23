@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
-import 'package:student_management_app/auth/login.dart';
+import 'package:student_management_app/pages/tabs/home_tab.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -37,7 +37,7 @@ class OnBoarding extends StatelessWidget {
           ],
           onDone: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => Login(),
+              builder: (context) => HomePage(),
             ));
           },
           showNextButton: true,
